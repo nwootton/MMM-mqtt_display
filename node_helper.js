@@ -1,7 +1,8 @@
 /* Magic Mirror
  * Module: MMM-mqtt_display
  *
- * By Paul Langdon
+ * Original By Paul Langdon
+ * This fork version by Nick Wootton
  * MIT Licensed.
  */
 
@@ -42,7 +43,7 @@ module.exports = NodeHelper.create({
     });
 
     client.on('message', function(topic, message) {
-      console.log('topic: ' + topic + ', message: ' +message.toString() );
+      //console.log('topic: ' + topic + ', message: ' +message.toString() );
       self.sendSocketNotification('MQTT_DATA', {'topic':topic, 'data':message.toString()});
       // client.end();
     });

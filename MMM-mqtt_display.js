@@ -23,6 +23,16 @@ Module.register('MMM-mqtt_display', {
     postText: ''
   },
 
+	// Define required scripts.
+	getStyles: function() {
+		return ["mqtt.css", "font-awesome.css"];
+	},
+
+	// Define required scripts.
+	getScripts: function() {
+		return ["moment.js"];
+	},
+
   start: function() {
     Log.info('Starting module: ' + this.name);
     this.loaded = false;
@@ -50,7 +60,29 @@ Module.register('MMM-mqtt_display', {
     }
 
     var mqttDiv = document.createElement('div');
-    mqttDiv.innerHTML = this.mqttVal.toString().concat(this.config.postText);
+
+    var table = document.createElement("table");
+    table.className = "small";
+
+    for (var m in this.mqttMessages) {
+      var message = this.mqttMessages[m];
+
+      var row = document.createElement("tr");
+      table.appendChild(row);
+
+      var topicCell = document.createElement("td");
+      topicCell.className = "topic";
+      topicCell.innerHTML = message.title;
+      row.appendChild(topicCell);
+
+      var messageCell = document.createElement("td");
+      messageCell.className = "message";
+      messageCell.innerHTML = message.message;
+      row.appendChild(messageCell);
+    }
+
+    mqttDiv.appendChild(table);
+
     wrapper.appendChild(mqttDiv);
 
     return wrapper;
@@ -58,7 +90,18 @@ Module.register('MMM-mqtt_display', {
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === 'MQTT_DATA') {
-      this.mqttVal = payload.data.toString();
+      this.mqttMessages = [];
+
+      arrTopic = payload.topic.split('/');
+      thisShortTitle = arrTopic[arrTopic.length-2] + '\\' + arrTopic[arrTopic.length-1];
+
+      this.mqttMessages.push(
+        {
+          title: thisShortTitle.toString(),
+          message: payload.data.toString()
+        }
+      );
+
       this.loaded = true;
       this.updateDom();
     }
