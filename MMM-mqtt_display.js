@@ -1,10 +1,10 @@
-'use strict';
 /* global Module */
 
 /* Magic Mirror
  * Module: MMM-mqtt_display
  *
- * By Paul Langdon
+ * Original By Paul Langdon
+ * This fork version by Nick Wootton
  * MIT Licensed.
  */
 
@@ -12,8 +12,11 @@ Module.register('MMM-mqtt_display', {
 
   defaults: {
     mqttServer: 'mqtt://test.mosquitto.org',
+    port: 1883,
     loadingText: 'Loading MQTT Data...',
     topic: '',
+    user: '',
+    passwd: '',
     showTitle: false,
     title: 'MQTT Data',
     interval: 300000,
@@ -54,7 +57,7 @@ Module.register('MMM-mqtt_display', {
   },
 
   socketNotificationReceived: function(notification, payload) {
-    if (notification === 'MQTT_DATA' && payload.topic === this.config.topic) {
+    if (notification === 'MQTT_DATA') {
       this.mqttVal = payload.data.toString();
       this.loaded = true;
       this.updateDom();

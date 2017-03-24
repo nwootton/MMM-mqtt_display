@@ -1,5 +1,3 @@
-'use strict';
-
 /* Magic Mirror
  * Module: MMM-mqtt_display
  *
@@ -7,7 +5,7 @@
  * MIT Licensed.
  */
 
-const NodeHelper = require('node_helper');
+var NodeHelper = require('node_helper');
 var mqtt = require('mqtt');
 
 module.exports = NodeHelper.create({
@@ -17,7 +15,8 @@ module.exports = NodeHelper.create({
 
   getMqtt: function(payload) {
     var self = this;
-    var client = mqtt.connect(payload.mqttServer);
+
+    var client = mqtt.connect({ host: payload.mqttServer, port: payload.port, username: payload.user, password: payload.passwd });
 
     client.on('connect', function() {
       client.subscribe(payload.topic);
@@ -43,6 +42,7 @@ module.exports = NodeHelper.create({
     });
 
     client.on('message', function(topic, message) {
+      console.log('topic: ' + topic + ', message: ' +message.toString() );
       self.sendSocketNotification('MQTT_DATA', {'topic':topic, 'data':message.toString()});
       // client.end();
     });
