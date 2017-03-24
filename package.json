@@ -1,6 +1,6 @@
 {
 "name": "mmm-mqtt_display",
-"version": "0.1.0",
+"version": "0.2.0",
 "description": "MQTT Display Module for MagicMirror",
 "main": "MMM-mqtt_display.js",
 "scripts": {
@@ -8,15 +8,15 @@
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/plangdon/MMM-mqtt_display.git"
+"url": "git+https://github.com/nwootton/MMM-mqtt_display"
 },
 "keywords": [
 "MagicMirror",
 "mqtt"
 ],
-"author": "Paul Langdon",
+"author": "NJW via Paul Langdon",
 "license": "MIT",
-"homepage": "https://github.com/plangdon/MMM-mqtt_display#readme",
+"homepage": "https://github.com/nwootton/MMM-mqtt_display#readme",
 "dependencies": {
 "mqtt": "^1.10.0"
 }
