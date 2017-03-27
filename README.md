@@ -32,9 +32,9 @@ The following options can be configured:
 | `mqttServer`  | Connection string for the server to connect to (`mqtt://localhost`)  |
 | `port`  | Port to use to connect to the MQTT Server. Defaults to 1883.  |
 | `loadingText`  | Text to display while waiting for data to load  |
-| `topic`  | MQTT Topic to subscribe to on the server (`alexa/mmm/display`)  |
+| `topic`  | MQTT Topic to subscribe to on the server (`this/topic/to/display`)  |
 | `user`  | If required the username of the secured MQTT server  |
-| `passwd`  | If required the passwsord of the secured MQTT server  |
+| `passwd`  | If required the password of the secured MQTT server  |
 | `showTitle`  | Boolean to show/hide a title (default: `false`)  |
 | `title`  | Title to show if `showTitle` is `true`  |
 | `interval`  | Refresh interval, not including MQTT subscription deliveries. (default: `300000`)  |
