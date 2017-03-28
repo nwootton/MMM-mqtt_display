@@ -41,7 +41,7 @@ Module.register('MMM-mqtt_display', {
   },
 
   updateMqtt: function(self) {
-    self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer, topic: self.config.topic });
+    self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer, port: self.config.port, user: self.config.user, passwd: self.config.passwd, topic: self.config.topic });
     setTimeout(self.updateMqtt, self.config.interval, self);
   },
 
