@@ -3,7 +3,7 @@
 # MMM-mqtt_display
 [MagicMirror²](https://github.com/MichMich/MagicMirror) Module that displays contents of a MQTT message
 
-
+Please note - I no longer run a MagicMirror, so this module is no-longer in progress. Feel free to fork the original and update as necessary.
 
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/nwootton/MMM-mqtt_display`. A new folder will appear, likely called `MMM-mqtt_display`.  Navigate into it.
